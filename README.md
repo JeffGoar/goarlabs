@@ -26,8 +26,6 @@ Live at **[goarlabs.com](https://goarlabs.com)**. The old domain, goar.dev, redi
 │   └── bandogram.html
 ├── writing/                    # Articles
 ├── og-image.png                # Social preview image (1200×630)
-├── CNAME                       # goarlabs.com
-├── .nojekyll
 ├── robots.txt
 └── sitemap.xml
 ```
@@ -65,9 +63,11 @@ Add the page to `sitemap.xml` and a card to the Work section of `index.html`.
 ## Stack and hosting
 
 - Plain HTML and CSS, no build step and no dependencies.
-- Hosted on GitHub Pages from `main`; every push to `main` deploys.
-- DNS and email are on Cloudflare (account "Goar.Dev"):
-  - goarlabs.com and www point to GitHub Pages (DNS only).
+- Hosted on **Cloudflare Pages**, project `goarlabs` (account "Goar.Dev"), connected to this repo.
+  Every push to `main` deploys to goarlabs.com; every other branch gets a preview at
+  `<branch>.goarlabs.pages.dev`. No build command; the repo root is served as-is.
+- DNS and email are on Cloudflare:
+  - goarlabs.com and www are proxied CNAMEs to `goarlabs.pages.dev`; a redirect rule sends www to the bare domain (301).
   - goar.dev and www.goar.dev redirect (301) to the Studio page, goarlabs.com/studio/. Pages that existed on
     goar.dev (about, work/*, writing/*) redirect to the same path on goarlabs.com so old links keep working.
   - Email Routing forwards jeff@goarlabs.com and jeff@goar.dev to Jeff's inbox.
