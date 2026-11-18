@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life Event Tool: case study — Goar Labs</title>
+<meta name="description" content="How Jeff Goar built a decision tool that told every Raymond James branch and home-office associate exactly which documents a death, divorce or incapacity case needed.">
+<meta name="author" content="Jeff Goar">
+<link rel="canonical" href="https://goarlabs.com/work/life-event-tool.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Goar Labs">
+<meta property="og:url" content="https://goarlabs.com/work/life-event-tool.html">
+<meta property="og:title" content="Life Event Tool — case study">
+<meta property="og:description" content="How Jeff Goar built a decision tool that told every Raymond James branch and home-office associate exactly which documents a death, divorce or incapacity case needed.">
+<meta property="og:image" content="https://goarlabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://goarlabs.com/og-image.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/assets/brand/goar-labs-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/work/case-study.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo.svg" alt="Goar Labs" width="148" height="30"></a>
+  <nav class="site-nav" aria-label="Main"><a href="/studio/">Studio</a><a href="/#work" aria-current="page">Work</a><a href="/#products">Products</a><a href="/#writing">Writing</a><a href="/about.html">About</a><a class="nav-cta" href="/#contact">Start a project</a></nav>
+</div></header>
+<main id="main" class="cs" style="--accent: #121212; --on-accent: #FFFFFF">
+<header class="cs-header">
+  <a href="/#work" class="cs-back">&larr; All work</a>
+  <div class="cs-eyebrow">Case study &middot; Internal tool &middot; Financial services</div>
+  <h1 class="cs-title">Life Event Tool</h1>
+  <p class="cs-lede">When a client dies, divorces or becomes incapacitated, the paperwork depends on a dozen variables. I built a tool that walked every branch and home-office associate through the decision and told them exactly which documents they needed.</p>
+  <dl class="cs-meta">
+    <div><dt>Role</dt><dd>Came up with it, designed it and built it</dd></div>
+    <div><dt>Where</dt><dd>Raymond James, as a Business Technology Specialist (2014&ndash;2016)</dd></div>
+    <div><dt>Users</dt><dd>Every branch and home-office associate</dd></div>
+    <div><dt>Type</dt><dd>Internal decision-support tool</dd></div>
+  </dl>
+  <!-- TODO(jeff): confirm the year it launched and how long it stayed in use. -->
+</header>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">The problem</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>Financial services firms have processes for the hardest moments in a client's life: a death, a divorce, someone becoming unable to manage their own affairs. Each one needs paperwork before anything can move, and <strong>the paperwork is different every time</strong>. It depends on a dozen variables about the client, the account and the event.</p>
+    <p>The people handling these requests sit in branches and in the home office. They aren't specialists in every edge case, and they shouldn't have to be. They needed one place to answer a simple question: <strong>for this situation, exactly what do we need?</strong></p>
+  </div>
+</div></section>
+
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">My role</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>I came up with the tool and built it. Most of the work wasn't code. Getting the logic right took <strong>weeks of sitting with compliance and operations</strong>, walking through real scenarios and mapping out every edge case until the rules were complete and everyone agreed on them.</p>
+    <p>Then I turned that rulebook into an application: a guided set of questions that any associate could answer, ending in a clear list of the documents that case needed.</p>
+  </div>
+</div></section>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">How it worked</h2><span class="section-line"></span></div>
+  <div class="flow" role="img" aria-label="How the tool worked: an associate answers a short series of questions about the life event, the tool follows a decision tree built with compliance and operations, and it ends with the exact list of documents needed for that case.">
+    <div class="lane"><div class="lane-label">Ask</div><div class="lane-steps">
+      <div class="node ext"><b>Associate</b><small>in a branch or the home office</small></div><span class="arrow"></span>
+      <div class="node"><b>What happened?</b><small>death, divorce, incapacity and other life events</small></div><span class="arrow"></span>
+      <div class="node"><b>Follow-up questions</b><small>only the ones that matter for this case</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Decide</div><div class="lane-steps">
+      <div class="node"><b>Decision tree</b><small>rules mapped with compliance and operations</small></div><span class="arrow"></span>
+      <div class="node"><b>Every edge case</b><small>mapped out scenario by scenario</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Answer</div><div class="lane-steps">
+      <div class="node"><b>Exact document list</b><small>for this situation, nothing more, nothing missing</small></div><span class="arrow"></span>
+      <div class="node ext"><b>Request moves forward</b><small>with the documents the case calls for</small></div>
+    </div></div>
+  </div>
+  <p class="flow-note">This is an illustration of how the tool worked. The actual questions, rules and screens are internal to Raymond James and aren't shown here.</p>
+  <!-- TODO(jeff): add the stack it was built on (e.g. .NET, SQL Server, SharePoint or Access) and roughly how many questions and rules the decision tree held. -->
+</div></section>
+
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Hard problems</h2><span class="section-line"></span></div>
+  <div class="problems">
+    <div class="card text-only"><div>
+      <h3>The logic lived in people's heads</h3>
+      <p>The rules weren't written down in one place. They were spread across compliance, operations and years of experience. The real work was getting those people in a room, walking scenario after scenario, and turning what they knew into one complete set of rules that everyone signed off on.</p>
+    </div></div>
+    <div class="card text-only"><div>
+      <h3>Complete, but simple to use</h3>
+      <p>A dozen variables can combine into a huge number of cases. Showing all of that to an associate would defeat the point. The tool walked each associate through the decision tree, so they only saw the questions that applied to the case in front of them.</p>
+    </div></div>
+    <div class="card text-only"><div>
+      <h3>Built for everyone, not just experts</h3>
+      <p>It went to every branch and home-office associate, so it had to work for someone handling their first case of this kind, not just for the specialists who already knew the rules by heart.</p>
+    </div></div>
+  </div>
+</div></section>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Results</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>The Life Event Tool went into use across <strong>every branch and the home office</strong>, giving associates one place to answer "what do we need for this case?" It's still one of the projects I'm proudest of.</p>
+    <p>It also shaped how I work. The code was the easy part. The value came from understanding the problem deeply enough to get every edge case right, and that's the approach Goar Labs takes to every build, especially in regulated work.</p>
+    <!-- TODO(jeff): add any outcome you can share without internal detail, e.g. how many associates used it, how long it stayed in service, or whether requests came back for missing paperwork less often. -->
+  </div>
+</div></section>
+
+<section class="cs-cta">
+  <h2>Have a process only a few people really understand?</h2>
+  <p>I turn complicated rules into tools anyone on your team can use correctly.</p>
+  <a href="/#contact" class="btn btn-primary">Let's talk &rarr;</a>
+</section>
+
+<div class="cs-next">
+  <a href="/work/east-lake-classic.html"><small>&larr; Previous case study</small><b>East Lake Classic</b></a>
+  <a href="/work/bandogram.html" style="text-align:right;"><small>Next case study &rarr;</small><b>Bandogram</b></a>
+</div>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <a href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo-white.svg" alt="Goar Labs" width="158" height="32"></a>
+  <div class="footer-cols">
+    <div><b>Goar Labs</b><a href="/studio/">Studio</a><a href="/#work">Work</a><a href="/#writing">Writing</a><a href="/about.html">About</a></div>
+    <div><b>Products</b><a href="https://bsbl.io" target="_blank" rel="noopener">bsbl.io</a><span>Sandlot Culture</span></div>
+    <div><b>Elsewhere</b><a href="mailto:jeff@goarlabs.com">jeff@goarlabs.com</a><a href="https://www.linkedin.com/in/jeffgoar/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/JeffGoar" target="_blank" rel="noopener">GitHub</a><a href="https://goarphotography.com" target="_blank" rel="noopener">GOAR Photography</a></div>
+  </div>
+  <p class="footer-base">© 2026 Goar Labs · Palm Harbor, Florida</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bandogram: case study — Goar Labs</title>
+<meta name="description" content="Paid PA shout-outs for marching band competitions. Host sales settle straight to the host's own Stripe or Square account, a rule enforced by CI, with security tested against a real database.">
+<meta name="author" content="Jeff Goar">
+<link rel="canonical" href="https://goarlabs.com/work/bandogram.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Goar Labs">
+<meta property="og:url" content="https://goarlabs.com/work/bandogram.html">
+<meta property="og:title" content="Bandogram — case study">
+<meta property="og:description" content="Paid PA shout-outs for marching band competitions. Host sales settle straight to the host's own Stripe or Square account, a rule enforced by CI, with security tested against a real database.">
+<meta property="og:image" content="https://goarlabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://goarlabs.com/og-image.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/assets/brand/goar-labs-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/work/case-study.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo.svg" alt="Goar Labs" width="148" height="30"></a>
+  <nav class="site-nav" aria-label="Main"><a href="/studio/">Studio</a><a href="/#work" aria-current="page">Work</a><a href="/#products">Products</a><a href="/#writing">Writing</a><a href="/about.html">About</a><a class="nav-cta" href="/#contact">Start a project</a></nav>
+</div></header>
+
+<main id="main" class="cs" style="--accent: #DC0404; --on-accent: #FFFFFF">
+<header class="cs-header">
+  <a href="/#work" class="cs-back">&larr; All work</a>
+  <div class="cs-eyebrow">Case study &middot; Goar Labs product &middot; In development</div>
+  <h1 class="cs-title">Bandogram</h1>
+  <p class="cs-lede">Paid shout-outs read over the PA at marching band competitions. Parents buy a short message from their phone, the host approves it and the announcer reads it between performances. The money goes straight to the host's own Stripe or Square account, and Goar Labs never touches it.</p>
+  <dl class="cs-meta">
+    <div><dt>Role</dt><dd>Product, design and engineering</dd></div>
+    <div><dt>Timeline</dt><dd>Started August 2026</dd></div>
+    <div><dt>Stack</dt><dd>Next.js, TypeScript, Supabase, Stripe Connect, Square</dd></div>
+    <div><dt>Status</dt><dd>Host side built; buyer and announcer screens next</dd></div>
+  </dl>
+  <!-- TODO(jeff): once the first event has run, update Status and the Timeline, and add the event (with the host's permission). -->
+</header>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">The problem</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>A marching band competition is a full stadium sitting through PA announcements between every performance. The boosters who host these events run on thin margins: concessions, programs and ads, all of which need inventory, volunteers or both.</p>
+    <p>A shout-out over the PA costs nothing to produce. "Good luck, Maya, from Mom and Dad" is pure margin for the band program. Nobody sold them because there was no way to take payment, check the message and get it into the announcer's hands during a fast-moving show. <strong>No off-the-shelf tool exists for this niche.</strong></p>
+  </div>
+</div></section>
+
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">My role</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>Bandogram is a Goar Labs product, and I'm doing all of it: the product spec, the payment model, the Terms of Service and a written policy for showing minors' names, the visual identity, and the code.</p>
+    <p>I built it with Claude Code as a pair programmer, working from a written spec and a short list of hard rules the code isn't allowed to break. The foundation, both payment providers, the host admin dashboard and CI went from first commit to a merged branch in three days. Moving that fast only works if the rules are checks rather than intentions, which is most of what this case study is about.</p>
+  </div>
+</div></section>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Stack</h2><span class="section-line"></span></div>
+  <div class="stack-grid">
+    <div class="stack-group"><h3>App</h3><div class="chips"><span>Next.js 16</span><span>TypeScript</span><span>Tailwind</span><span>Zod</span></div><p>App Router, strict TypeScript, one set of Zod schemas shared by the browser and the server.</p></div>
+    <div class="stack-group"><h3>Database and auth</h3><div class="chips"><span>Supabase</span><span>Postgres</span><span>Row Level Security</span></div><p>Magic-link sign-in. Every table has row level security, and 9 migrations define the schema and its permissions.</p></div>
+    <div class="stack-group"><h3>Payments</h3><div class="chips"><span>Stripe Connect</span><span>Square</span></div><p>Hosts connect their own account. Checkout is hosted by the provider, so card details never reach Bandogram.</p></div>
+    <div class="stack-group"><h3>Quality</h3><div class="chips"><span>Vitest</span><span>GitHub Actions</span><span>Sentry</span></div><p>173 tests, including a permissions suite run against a real database. Sentry scrubs messages and names before anything is sent.</p></div>
+  </div>
+</div></section>
+
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Architecture</h2><span class="section-line"></span></div>
+  <div class="flow" role="img" aria-label="Architecture: the host connects their own Stripe or Square account. A parent writes a message and pays on the provider's hosted checkout, and the money settles to the host's account. The provider's signed webhook is verified and recorded once before the message moves to paid. The host approves it, and it reaches the announcer's queue. Goar Labs bills its own flat event fee separately, on its own Stripe account, through code that shares nothing with host sales.">
+    <div class="lane"><div class="lane-label">Connect</div><div class="lane-steps">
+      <div class="node ext"><b>Host</b><small>a band booster organization</small></div><span class="arrow"></span>
+      <div class="node"><b>Their own Stripe or Square</b><small>connected in minutes, readiness checked before publishing</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Buy</div><div class="lane-steps">
+      <div class="node ext"><b>Parent</b><small>on their phone in the stands</small></div><span class="arrow"></span>
+      <div class="node"><b>Hosted checkout</b><small>Apple Pay and Google Pay, no card data on our side</small></div><span class="arrow"></span>
+      <div class="node"><b>Host's account</b><small>funds settle there directly, no platform cut</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Confirm</div><div class="lane-steps">
+      <div class="node"><b>Signed webhook</b><small>signature verified, each event processed once</small></div><span class="arrow"></span>
+      <div class="node"><b>Host approves</b><small>messages are checked before anyone reads them</small></div><span class="arrow"></span>
+      <div class="node ext"><b>Announcer</b><small>reads the queue between performances</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Bill</div><div class="lane-steps">
+      <div class="node"><b>Flat event fee</b><small>Goar Labs' own Stripe account, separate code</small></div>
+    </div></div>
+  </div>
+  <p class="flow-note">Host sales and Goar Labs' own billing live in separate modules that may not import from each other. A test fails the build if either one does. The order form, moderation and the announcer&rsquo;s queue are the next part of the build.</p>
+</div></section>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Key features</h2><span class="section-line"></span></div>
+  <ul class="feature-list">
+    <li><b>Two payment providers, one interface</b><span>Stripe and Square sit behind the same seven methods: connect, return, readiness, checkout, refund, webhook and disconnect. A parity test runs both through the same cases.</span></li>
+    <li><b>A publish gate that checks the account</b><span>An event can't go live until the host's account can actually take payments. The blockers are listed before the button, and the check runs again on the server at publish time.</span></li>
+    <li><b>Tiers, not a price</b><span>Each event has tiers with their own price, character limit and queue placement, such as a standard shout-out and a capped spotlight.</span></li>
+    <li><b>An admin dashboard built for one night a year</b><span>Hosts touch it once a season, so problems show up where a host will notice them: an expired provider connection appears on the home screen, because the symptom is "sales stopped".</span></li>
+    <li><b>Minors first</b><span>Recipients are mostly students. By default the public sees a first name and a section, never a full name next to a school.</span></li>
+    <li><b>An audit trail</b><span>Every change, including each payment and refund the webhooks record, is written to an audit log with who did it, and why when it needs a reason.</span></li>
+  </ul>
+</div></section>
+
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Hard problems</h2><span class="section-line"></span></div>
+  <div class="problems">
+    <div class="card">
+      <div>
+        <h3>Never touching the money, enforced by CI</h3>
+        <p>If the money lands in the platform's account, the platform may be a money transmitter, owes identity checks on every host and eats the chargebacks. If it lands in the host's account, the platform is a software vendor. So Bandogram charges a flat fee per event and takes nothing from sales.</p>
+        <p>That decision is a CI check, not a promise. Any fee or fund-splitting field in the host-sales code fails the build. Writing the Square provider showed why the check has to be exact: the original test looked for <code>app_fee_money</code>, but the SDK spells it <code>appFeeMoney</code>. Bandogram also never requests the Square permission needed to split funds, so it <strong>can't</strong> take a cut, rather than merely choosing not to.</p>
+      </div>
+      <div><span class="pre-label">.github/workflows/ci.yml</span><pre><code><span class="c"># Strip comments first: these fields are named in prose</span>
+<span class="c"># explaining why they must not be used.</span>
+if find lib/providers -name <span class="s">'*.ts'</span> -print0 \
+  | xargs -0 -r perl -0pe <span class="s">'s{/\*.*?\*/}{}gs; s{//.*$}{}gm'</span> \
+  | grep -nE <span class="s">'application_fee_amount|applicationFeeAmount|app_fee_money|appFeeMoney|transfer_data|transferData|PAYMENTS_WRITE_ADDITIONAL_RECIPIENTS'</span>; then
+  echo <span class="s">"::error::A platform fee or fund-splitting field appears in lib/providers/."</span>
+  exit 1
+fi</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>Row security doesn't protect columns</h3>
+        <p>Published events have to be readable by anyone, because the order form is public. Row level security decides which <em>rows</em> someone can see, and says nothing about columns. A self-audit found that a signed-out stranger could read the announcer's access token for every published event, and that any member of a host's organization could read its Square tokens.</p>
+        <p>Both were reproduced against the database before fixing. The first fix silently did nothing: revoking one column only subtracts from a column grant, and these tables had table-level grants. Running the exploit again is the only reason that was caught. The working fix revokes the table and grants back only the safe columns.</p>
+      </div>
+      <div><span class="pre-label">supabase/migrations/&hellip;_protect_announcer_token.sql</span><pre><code><span class="k">revoke select</span>, insert, update <span class="k">on</span> events <span class="k">from</span> anon, authenticated;
+
+<span class="c">-- Everything the public form and the host console need.</span>
+<span class="c">-- Note the absentees.</span>
+<span class="k">grant select</span> (
+  id, org_id, payment_acct_id, slug, name, event_date,
+  timezone, venue, opens_at, closes_at, status, &hellip;
+) <span class="k">on</span> events <span class="k">to</span> anon, authenticated;</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>A replayed webhook can't sell twice</h3>
+        <p>Payment providers retry webhooks often and deliver them out of order. Two copies of the same event arriving together can both see "not processed yet" before either one finishes. So "already handled" has to be a fact in the database, not in memory.</p>
+        <p>The handler records the provider's event ID <em>first</em>, and a duplicate is acknowledged and dropped. A second unique constraint means one payment can only ever create one payment record, even if the first guard were bypassed.</p>
+      </div>
+      <div><span class="pre-label">supabase/migrations/&hellip;_provider_webhook_idempotency.sql</span><pre><code><span class="k">create table</span> provider_webhook_events (
+  id uuid <span class="k">primary key default</span> gen_random_uuid(),
+  provider provider_type <span class="k">not null</span>,
+  provider_event_id text <span class="k">not null</span>,
+  event_type text <span class="k">not null</span>,
+  received_at timestamptz <span class="k">not null default</span> now(),
+  <span class="k">constraint</span> provider_webhook_events_unique
+    <span class="k">unique</span> (provider, provider_event_id)
+);</code></pre></div>
+    </div>
+    <div class="card text-only"><div>
+      <h3>Tests that pass because nothing ran</h3>
+      <p>The first real run of the permissions suite failed 11 of 31 tests. The policies were fine; the suite wasn't. The test users never got created, so every "can read your own data" test failed and every "can't read another host's data" test passed for the wrong reason. A security suite that fails open is worse than none, because it looks like proof.</p>
+      <p>Setup errors now stop the run. The suite signs each test user in once instead of on every test, so it stays under Supabase's sign-in rate limit, and it passed four consecutive clean runs before it counted.</p>
+    </div></div>
+    <div class="card text-only"><div>
+      <h3>Stripe changed under the plan</h3>
+      <p>The spec assumed hosts would connect Stripe through OAuth. Stripe no longer offers that to new platforms, so onboarding moved to Stripe's newer account links. Before rebuilding it, I checked the money model in Stripe's test environment: the host still pays Stripe's fees, Stripe carries any negative balance and charges still go straight to the host.</p>
+      <p>One detail mattered more than the rest. The return from Stripe isn't signed, so Bandogram ignores what's in that URL and asks Stripe directly. Trusting an account ID from the URL would have let someone attach another organization's Stripe account to their own.</p>
+    </div></div>
+  </div>
+</div></section>
+
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Results</h2><span class="section-line"></span></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Payment providers behind one interface</div></div>
+    <div class="stat"><div class="stat-num">173</div><div class="stat-label">Automated tests</div></div>
+    <div class="stat"><div class="stat-num">31</div><div class="stat-label">Permission tests run against a real database</div></div>
+    <div class="stat"><div class="stat-num">0%</div><div class="stat-label">Of host sales kept by the platform</div></div>
+  </div>
+  <div class="prose">
+    <p>The host side is built: sign-in, connecting Stripe or Square, creating events and tiers, the publish gate, refunds and the admin dashboard, with signature-checked, replay-safe webhooks underneath. Next are the screens parents and announcers use: the order form, moderation and the announcer's queue.</p>
+    <p>Bandogram is a small product with real consequences: other people's money, students' names and a live event that can't be paused while someone fixes a bug. It's the kind of work where I'd rather write the rule down, make the build enforce it, and then try to break it myself.</p>
+    <!-- TODO(jeff): after the first event, add how many bandograms sold and what the host raised (with their permission), plus a screenshot of the order form. -->
+  </div>
+</div></section>
+
+<section class="cs-cta">
+  <h2>Building something that handles other people's money?</h2>
+  <p>I design payments, permissions and audit trails that hold up, and prove it with tests.</p>
+  <a href="/#contact" class="btn btn-primary">Let's talk &rarr;</a>
+</section>
+
+<div class="cs-next">
+  <a href="/work/life-event-tool.html"><small>&larr; Previous case study</small><b>Life Event Tool</b></a>
+  <a href="/work/bsbl-io.html" style="text-align:right;"><small>Next case study &rarr;</small><b>bsbl.io</b></a>
+</div>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <a href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo-white.svg" alt="Goar Labs" width="158" height="32"></a>
+  <div class="footer-cols">
+    <div><b>Goar Labs</b><a href="/studio/">Studio</a><a href="/#work">Work</a><a href="/#writing">Writing</a><a href="/about.html">About</a></div>
+    <div><b>Products</b><a href="https://bsbl.io" target="_blank" rel="noopener">bsbl.io</a><span>Sandlot Culture</span></div>
+    <div><b>Elsewhere</b><a href="mailto:jeff@goarlabs.com">jeff@goarlabs.com</a><a href="https://www.linkedin.com/in/jeffgoar/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/JeffGoar" target="_blank" rel="noopener">GitHub</a><a href="https://goarphotography.com" target="_blank" rel="noopener">GOAR Photography</a></div>
+  </div>
+  <p class="footer-base">© 2026 Goar Labs · Palm Harbor, Florida</p>
+</div></footer>
+</body>
+</html>

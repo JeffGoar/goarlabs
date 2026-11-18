@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bsbl.io: case study — Goar Labs</title>
+<meta name="description" content="bsbl.io turns Statcast, box scores, the minors and the draft into one ranked, plain-English baseball feed, with an AI that picks the right chart for your question. A personal research project by Jeff Goar.">
+<meta name="author" content="Jeff Goar">
+<link rel="canonical" href="https://goarlabs.com/work/bsbl-io.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Goar Labs">
+<meta property="og:url" content="https://goarlabs.com/work/bsbl-io.html">
+<meta property="og:title" content="bsbl.io — case study">
+<meta property="og:description" content="bsbl.io turns Statcast, box scores, the minors and the draft into one ranked, plain-English baseball feed, with an AI that picks the right chart for your question. A personal research project by Jeff Goar.">
+<meta property="og:image" content="https://goarlabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://goarlabs.com/og-image.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/assets/brand/goar-labs-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/work/case-study.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo.svg" alt="Goar Labs" width="148" height="30"></a>
+  <nav class="site-nav" aria-label="Main"><a href="/studio/">Studio</a><a href="/#work" aria-current="page">Work</a><a href="/#products">Products</a><a href="/#writing">Writing</a><a href="/about.html">About</a><a class="nav-cta" href="/#contact">Start a project</a></nav>
+</div></header>
+<main id="main" class="cs" style="--accent: #2F5BFF; --on-accent: #FFFFFF">
+<header class="cs-header">
+  <a href="/#work" class="cs-back">&larr; All work</a>
+  <div class="cs-eyebrow">Case study &middot; Data + AI &middot; Personal research project</div>
+  <h1 class="cs-title">bsbl<span>.io</span></h1>
+  <p class="cs-lede">Baseball has more public data than anyone can read. bsbl.io ranks it into one plain-English feed (the milestone, the breakout, the mismatch) so the story finds you.</p>
+  <dl class="cs-meta">
+    <div><dt>Role</dt><dd>Sole designer and developer</dd></div>
+    <div><dt>Timeline</dt><dd>March 2026 &rarr; today, about 1,280 commits</dd></div>
+    <div><dt>Stack</dt><dd>React, Supabase, Python on GitHub Actions, Netlify, Claude</dd></div>
+    <div><dt>Links</dt><dd><a href="https://bsbl.io" target="_blank" rel="noopener">bsbl.io &nearr;</a></dd></div>
+  </dl>
+</header>
+
+<div class="cs-hero-shot">
+  <figure>
+    <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>bsbl.io</span></div><img src="/assets/work/bsbl-io/home.webp" width="1440" height="900" alt="bsbl.io home page: the headline The whole game, decoded, beside a top-ranked signal card and a ticker of milestones" /></div>
+    <figcaption>Home: the top-ranked signal of the day, a milestone ticker, and a way into each part of the product.</figcaption>
+  </figure>
+  <figure>
+    <div class="phone"><img src="/assets/work/bsbl-io/mobile.webp" width="780" height="1560" alt="bsbl.io on a phone, with a bottom tab bar for Today, Intel, Games, Scores and More" loading="lazy" /></div>
+    <figcaption>Designed to be used on a phone, with a native-style tab bar.</figcaption>
+  </figure>
+</div>
+
+<!-- 01 PROBLEM -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">The problem</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>Baseball is the most measured sport there is. Every pitch is tracked by Statcast, every minor-league game has a box score, and sites like Baseball Savant and FanGraphs publish more numbers than any fan can keep up with. The data isn't the hard part. <strong>Knowing what's worth looking at is.</strong></p>
+    <p>Most stats sites give you a table and expect you to find the story yourself. I wanted the opposite: <strong>"answers, not homework."</strong> One feed that watches all of it, ranks what's genuinely unusual, says it in plain English, and lets you ask follow-up questions in your own words.</p>
+    <p>bsbl.io is a personal research project. It isn't advertised or monetized, and it's where I work through ideas about data pipelines, ranking and applied AI on a dataset I care about.</p>
+  </div>
+</div></section>
+
+<!-- 02 ROLE -->
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">My role</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>Everything, end to end: the product, the data model, the ingest pipeline, the signal and scoring logic, the front end, the AI features, and the copy, including a plain-English glossary of every stat the site uses.</p>
+    <p>It's built across two repositories, a React front end and a Python back end, with <strong>about 1,280 commits between March and October 2026</strong>. I built it with <strong>Claude Code</strong> as my pair programmer: I set the direction and reviewed the changes, and the work is backed by more than 3,400 automated tests.</p>
+  </div>
+</div></section>
+
+<!-- 03 STACK -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Stack</h2><span class="section-line"></span></div>
+  <div class="stack-grid">
+    <div class="stack-group"><h3>Front end</h3><div class="chips"><span>React 18</span><span>Vite</span><span>Tailwind</span><span>Recharts</span><span>visx</span><span>d3</span></div><p>A JavaScript single-page app with 61 pages, tested with Vitest.</p></div>
+    <div class="stack-group"><h3>Data pipeline</h3><div class="chips"><span>Python</span><span>pybaseball</span><span>GitHub Actions</span></div><p>26 scheduled jobs pull from the MLB Stats API, Baseball Savant, FanGraphs, Open-Meteo weather and MLB.com news.</p></div>
+    <div class="stack-group"><h3>Database</h3><div class="chips"><span>Supabase</span><span>Postgres</span><span>pg_cron</span></div><p>More than 100 SQL migrations, plus precomputed tables so pages load fast.</p></div>
+    <div class="stack-group"><h3>AI</h3><div class="chips"><span>Claude Haiku 4.5</span><span>Claude Sonnet 5</span></div><p>Ask AI plans with Haiku and writes its analysis with Sonnet. The pipeline also uses Claude to write daily facts, under strict number checks.</p></div>
+    <div class="stack-group"><h3>Hosting</h3><div class="chips"><span>Netlify</span><span>Functions</span><span>Edge functions</span></div><p>23 functions (Ask AI, an allowlisted data layer, 17 social-card renderers) and 10 edge functions for link previews.</p></div>
+  </div>
+</div></section>
+
+<!-- 04 ARCHITECTURE -->
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Architecture</h2><span class="section-line"></span></div>
+  <div class="flow" role="img" aria-label="Architecture: scheduled Python jobs on GitHub Actions pull public baseball data into Supabase Postgres. A scoring step turns player signals and insight candidates into one ranked feed. The React app on Netlify reads it through server functions. Ask AI plans a query from fixed data sources and chart types, validates it, fetches real rows, and writes an answer, logging every outcome anonymously.">
+    <div class="lane"><div class="lane-label">Ingest</div><div class="lane-steps">
+      <div class="node ext"><b>Public sources</b><small>MLB Stats API, Statcast, FanGraphs, weather, news</small></div><span class="arrow"></span>
+      <div class="node"><b>GitHub Actions</b><small>26 scheduled Python jobs, with retries and an off-season guard</small></div><span class="arrow"></span>
+      <div class="node"><b>Supabase Postgres</b><small>8.34M Statcast pitches, 2015&ndash;2026, plus season and prospect tables</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Rank</div><div class="lane-steps">
+      <div class="node"><b>Candidates</b><small>6 player-signal types and 47 live insight types</small></div><span class="arrow"></span>
+      <div class="node"><b>Scoring</b><small>a weighted blend; only rows above a threshold publish</small></div><span class="arrow"></span>
+      <div class="node"><b>One feed</b><small>facts, signals and news merged and ranked</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Serve</div><div class="lane-steps">
+      <div class="node"><b>Netlify functions</b><small>allowlisted reads, social cards</small></div><span class="arrow"></span>
+      <div class="node"><b>React app</b><small>feed, boards, search and games</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Ask AI</div><div class="lane-steps">
+      <div class="node ext"><b>Question</b><small>in plain English</small></div><span class="arrow"></span>
+      <div class="node"><b>Plan</b><small>Haiku picks 1 of 25 data sources and 7 chart types</small></div><span class="arrow"></span>
+      <div class="node"><b>Validate and fetch</b><small>repair the plan, resolve names, pull real rows</small></div><span class="arrow"></span>
+      <div class="node"><b>Answer</b><small>Sonnet writes about the rows it was given</small></div>
+    </div></div>
+  </div>
+  <p class="flow-note">Claude never writes database queries. It chooses from fixed, tested data sources and chart types, and every answer is built from rows the system actually fetched. Each question's outcome is logged without any user, session or IP data and deleted after 90 days.</p>
+</div></section>
+
+<!-- 05 FEATURES -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Key features</h2><span class="section-line"></span></div>
+  <div class="feature-grid">
+    <figure class="wide">
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>bsbl.io/intel</span></div><img src="/assets/work/bsbl-io/intel.webp" width="1440" height="900" alt="Intel briefing: a spotlight signal card showing rarity percentile, confidence, the metric and the evidence behind the flag, with latest news below" loading="lazy" /></div>
+      <figcaption>Intel: every signal shows why it was flagged, with its rarity percentile, confidence, the metric and source, and the evidence against the threshold.</figcaption>
+    </figure>
+    <figure>
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>bsbl.io/prospects</span></div><img src="/assets/work/bsbl-io/prospects.webp" width="1440" height="900" alt="Prospect board: a stats-first top 500 across every affiliated level, filterable by level and organization" loading="lazy" /></div>
+      <figcaption>A stats-first top-500 prospect board across every affiliated level.</figcaption>
+    </figure>
+    <figure>
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>bsbl.io/pitch-search</span></div><img src="/assets/work/bsbl-io/pitch-search.webp" width="1440" height="900" alt="Pitch search with presets such as Barrels and Elite Contact, and filters for exit velocity, launch angle, pitch type and outcome" loading="lazy" /></div>
+      <figcaption>Pitch-level Statcast search with presets, filters and CSV export.</figcaption>
+    </figure>
+    <figure>
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>bsbl.io/draft</span></div><img src="/assets/work/bsbl-io/draft.webp" width="1440" height="900" alt="MLB Draft results table with picks, schools, college stats and signing bonuses, selectable back to 2015" loading="lazy" /></div>
+      <figcaption>Draft results, a pre-draft board and a live tracker, back to 2015.</figcaption>
+    </figure>
+    <figure>
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>bsbl.io/parks</span></div><img src="/assets/work/bsbl-io/parks.webp" width="1440" height="900" alt="Ballparks grid with photos of every MLB park" loading="lazy" /></div>
+      <figcaption>Every MLB park, with park factors, dimensions and hit maps.</figcaption>
+    </figure>
+  </div>
+  <ul class="feature-list">
+    <li><b>Ask AI</b><span>Ask any baseball question in plain English. Claude picks the data source and the chart, and the answer comes from real rows.</span></li>
+    <li><b>Ranked signals</b><span>Breakouts, regressions, streaks, splits, matchups, milestones and anomalies, scored and ranked into one feed.</span></li>
+    <li><b>Org development</b><span>All 30 farm systems graded on farm development and MLB outcomes, plotted against each other.</span></li>
+    <li><b>Two daily games</b><span>Spray (guess the hitter from his spray chart) and Beat the Signal (pick a hitter to get a hit, then build a streak).</span></li>
+    <li><b>Matchup Lab and Compare</b><span>Scout any batter against any pitcher, or line up four players head to head and get a verdict, not just a table.</span></li>
+    <li><b>A 243-term glossary</b><span>Every stat code in the app links to a plain-English definition, with formulas and typical ranges where they apply.</span></li>
+  </ul>
+</div></section>
+
+<!-- 06 HARD PROBLEMS -->
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Hard problems</h2><span class="section-line"></span></div>
+  <div class="problems">
+    <div class="card">
+      <div>
+        <h3>Ranking "interesting" without crying wolf</h3>
+        <p>A feed that flags everything is as useless as one that flags nothing. Every candidate, from a milestone to a slump signal, is scored on a transparent weighted blend, and only rows above a threshold publish.</p>
+        <p>A type that keeps showing up day after day is damped a little each day, so the top of the feed stays genuinely unusual, and every item keeps the evidence behind it so it can be checked.</p>
+      </div>
+      <div><span class="pre-label">etl/insights/scoring.py</span><pre><code>WEIGHTS = {
+    <span class="s">"rarity_score"</span>: 0.25,
+    <span class="s">"relevance_score"</span>: 0.20,
+    <span class="s">"recency_score"</span>: 0.15,
+    <span class="s">"magnitude_score"</span>: 0.15,
+    <span class="s">"weirdness_score"</span>: 0.15,
+    <span class="s">"narrative_score"</span>: 0.10,
+}</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>AI that can't make numbers up</h3>
+        <p>An LLM will happily write a confident, wrong number. When Claude writes a daily fact, every number in its headline and context is checked against the stats it was given. One number that isn't in the source and the row is held back instead of published.</p>
+        <p>Ask AI follows the same rule: Claude plans from fixed data sources and chart types, and anything it gets wrong is repaired or refused. Logging every outcome is how a silent failure surfaced: structured output had been dropped on every query for weeks because the schema had grown past the API's limits. The fix was to restructure how parameters are sent.</p>
+      </div>
+      <div><span class="pre-label">etl/insights/enrich.py</span><pre><code><span class="c"># Guardrail: reject AI-introduced numbers.</span>
+for field in (<span class="s">"headline"</span>, <span class="s">"short_context"</span>, <span class="s">"why_it_matters"</span>):
+    bad = _ungrounded_number(out.get(field, <span class="s">""</span>), grounded)
+    if bad is not None:
+        row[<span class="s">"do_not_publish_reason"</span>] = (
+            f<span class="s">"AI introduced ungrounded number {bad} in {field}"</span>)
+        row[<span class="s">"status"</span>] = <span class="s">"candidate"</span>
+        return row</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>Millions of pitch rows without timeouts</h3>
+        <p>As the pitch table grew past eight million rows, offset paging got slower with every page and jobs started hitting their time limits. Reads now go one day at a time, in a stable order, with retries.</p>
+        <p>The public sources rate-limit and fail. Each host gets backoff with jitter and a circuit breaker that pauses for 30 minutes after five blocked requests in a row, and the history backfill runs one season at a time.</p>
+      </div>
+      <div><span class="pre-label">etl/pitch_aggregates.py</span><pre><code>rows = (supabase.table(<span class="s">"statcast_pitches"</span>)
+        .select(cols_str)
+        .gte(<span class="s">"game_date"</span>, day.isoformat())
+        .lt(<span class="s">"game_date"</span>, next_day.isoformat())
+        .order(<span class="s">"game_date"</span>)
+        .order(<span class="s">"id"</span>)
+        .range(offset, offset + page_size - 1)
+        .execute()
+        .data or [])</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>The January 1st bug</h3>
+        <p>On New Year's Day the nightly sync started loading "the 2027 season", found nothing, and reported success. Nothing looked broken, but nothing was updating. The season now comes from a real season calendar, and an off-season policy throttles about 15 daily jobs in winter so empty runs don't hide real failures.</p>
+      </div>
+      <div><span class="pre-label">etl/phase.py</span><pre><code>as_of = as_of or date.today()
+by_calendar = as_of.year if season_has_started(as_of) else as_of.year - 1</code></pre></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 07 RESULTS -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">By the numbers</h2><span class="section-line"></span></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">8.34M</div><div class="stat-label">Statcast pitches stored, 2015&ndash;2026</div></div>
+    <div class="stat"><div class="stat-num">26</div><div class="stat-label">Scheduled data jobs</div></div>
+    <div class="stat"><div class="stat-num">72</div><div class="stat-label">Insight types defined, 47 live</div></div>
+    <div class="stat"><div class="stat-num">3,450</div><div class="stat-label">Automated tests across front and back end</div></div>
+  </div>
+  <div class="prose">
+    <p>bsbl.io is live and updates through the season, including the postseason: 61 pages, a 500-player prospect board, draft classes back to 2015 and a 243-term glossary. It's the project where I push hardest on the things clients ask me about most: pulling messy public data into one reliable model, ranking it so people see what matters, and putting AI on top in a way that stays honest about the numbers.</p>
+    <!-- TODO(jeff): add anything you'd like to share about usage (visitors, accounts, Ask AI questions answered). -->
+  </div>
+</div></section>
+
+<section class="cs-cta">
+  <h2>Sitting on data nobody has time to read?</h2>
+  <p>I build pipelines, rankings and AI features that turn raw data into answers your team can act on.</p>
+  <a href="/#contact" class="btn btn-primary">Let's talk &rarr;</a><a href="https://bsbl.io" class="btn btn-ghost" target="_blank" rel="noopener">Visit bsbl.io &nearr;</a>
+</section>
+
+<div class="cs-next">
+  <a href="/work/bandogram.html"><small>&larr; Previous case study</small><b>Bandogram</b></a>
+  <a href="/work/goar-photography.html" style="text-align:right;"><small>Next case study &rarr;</small><b>GOAR Photography</b></a>
+</div>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <a href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo-white.svg" alt="Goar Labs" width="158" height="32"></a>
+  <div class="footer-cols">
+    <div><b>Goar Labs</b><a href="/studio/">Studio</a><a href="/#work">Work</a><a href="/#writing">Writing</a><a href="/about.html">About</a></div>
+    <div><b>Products</b><a href="https://bsbl.io" target="_blank" rel="noopener">bsbl.io</a><span>Sandlot Culture</span></div>
+    <div><b>Elsewhere</b><a href="mailto:jeff@goarlabs.com">jeff@goarlabs.com</a><a href="https://www.linkedin.com/in/jeffgoar/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/JeffGoar" target="_blank" rel="noopener">GitHub</a><a href="https://goarphotography.com" target="_blank" rel="noopener">GOAR Photography</a></div>
+  </div>
+  <p class="footer-base">© 2026 Goar Labs · Palm Harbor, Florida</p>
+</div></footer>
+</body>
+</html>

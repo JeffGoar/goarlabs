@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOAR Photography: case study — Goar Labs</title>
+<meta name="description" content="How Jeff Goar replaced SmugMug with his own photography platform: portfolio, password-protected client galleries, an event sorter for band competitions, and photo sales — on Cloudflare, in nine days.">
+<meta name="author" content="Jeff Goar">
+<link rel="canonical" href="https://goarlabs.com/work/goar-photography.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Goar Labs">
+<meta property="og:url" content="https://goarlabs.com/work/goar-photography.html">
+<meta property="og:title" content="GOAR Photography — case study">
+<meta property="og:description" content="How Jeff Goar replaced SmugMug with his own photography platform: portfolio, password-protected client galleries, an event sorter for band competitions, and photo sales — on Cloudflare, in nine days.">
+<meta property="og:image" content="https://goarlabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://goarlabs.com/og-image.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/assets/brand/goar-labs-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/work/case-study.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo.svg" alt="Goar Labs" width="148" height="30"></a>
+  <nav class="site-nav" aria-label="Main"><a href="/studio/">Studio</a><a href="/#work" aria-current="page">Work</a><a href="/#products">Products</a><a href="/#writing">Writing</a><a href="/about.html">About</a><a class="nav-cta" href="/#contact">Start a project</a></nav>
+</div></header>
+<main id="main" class="cs" style="--accent: #121212; --on-accent: #FFFFFF">
+<header class="cs-header">
+  <a href="/#work" class="cs-back">&larr; All work</a>
+  <div class="cs-eyebrow">Case study &middot; Platform &middot; 2026</div>
+  <h1 class="cs-title">GOAR <span>Photography</span></h1>
+  <p class="cs-lede">I shoot sports, band and events around Tampa Bay. Rather than keep paying for a gallery service I couldn't brand, I built my own platform: portfolio, private client galleries, and photo sales.</p>
+  <dl class="cs-meta">
+    <div><dt>Role</dt><dd>Owner, photographer and developer. I'm also the client.</dd></div>
+    <div><dt>Timeline</dt><dd>First commit Oct 20, 2026 &rarr; live Oct 22 &rarr; sales Oct 23</dd></div>
+    <div><dt>Stack</dt><dd>Astro 7, Cloudflare Pages, R2, D1, Stripe</dd></div>
+    <div><dt>Links</dt><dd><a href="https://goarphotography.com" target="_blank" rel="noopener">goarphotography.com &nearr;</a></dd></div>
+  </dl>
+</header>
+
+<div class="cs-hero-shot">
+  <figure>
+    <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>goarphotography.com</span></div><img src="/assets/work/goar-photography/home.webp" width="1440" height="900" alt="GOAR Photography portfolio: an edge-to-edge justified grid of baseball, football and marching band photos, with category filters" /></div>
+    <figcaption>The portfolio is the home page: a justified, edge-to-edge grid with category filters.</figcaption>
+  </figure>
+  <figure>
+    <div class="phone"><img src="/assets/work/goar-photography/mobile.webp" width="780" height="1560" alt="The portfolio on a phone, with a Find your gallery search box above the photos" loading="lazy" /></div>
+    <figcaption>Parents mostly arrive on a phone, looking for their gallery.</figcaption>
+  </figure>
+</div>
+
+<!-- 01 PROBLEM -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">The problem</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>My clients are mostly parents: teams, bands and families who want to find their photos quickly, on a phone, after a game or a competition. A band competition is the hard case: one long day, hundreds of photos, and a dozen or more bands whose families each want only their own.</p>
+    <p>I started on SmugMug, but the plan that let me brand the galleries cost about <strong>$282 a year</strong>, and the cheaper plan couldn't be branded at all. Either way, clients were sent off to someone else's site. On October 22, two days into building a portfolio site that indexed SmugMug, I decided to <strong>move client galleries onto my own site</strong> instead.</p>
+    <p>Requirements:</p>
+    <ul>
+      <li>a fast portfolio that shows the work the way I'd frame it,</li>
+      <li>password-protected galleries clients open on my domain and never leave,</li>
+      <li>a way to split one competition shoot into a gallery per band without hand-sorting,</li>
+      <li>photo sales and downloads, and</li>
+      <li>an admin I can run from my phone at the venue.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- 02 ROLE -->
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">My role</h2><span class="section-line"></span></div>
+  <div class="prose">
+    <p>Everything: photographer, product owner, designer of the workflow, and developer. I built it with <strong>Claude Code</strong> as my pair programmer, working from a written brief and decision log that I kept in the repo. That's 64 commits over nine days, with decisions dated as they were made so they weren't relitigated.</p>
+    <p>I decided what to build, made the calls on cost, privacy and workflow, ran the accounts and DNS, and tested each feature against real shoots. The working rules I set included "never invent stats, testimonials or client names," which this case study follows as well.</p>
+  </div>
+</div></section>
+
+<!-- 03 STACK -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Stack</h2><span class="section-line"></span></div>
+  <div class="stack-grid">
+    <div class="stack-group"><h3>Site</h3><div class="chips"><span>Astro 7</span><span>TypeScript (strict)</span><span>Plain CSS</span></div><p>Static pages and no front-end framework. Only two runtime dependencies: Astro and sharp.</p></div>
+    <div class="stack-group"><h3>Edge + data</h3><div class="chips"><span>Cloudflare Pages Functions</span><span>D1 (SQLite)</span><span>R2</span><span>HTMLRewriter</span></div><p>R2 holds web-sized copies (public) and full-resolution originals (private). D1 holds galleries, photos, orders and stats.</p></div>
+    <div class="stack-group"><h3>Payments + email</h3><div class="chips"><span>Stripe Checkout</span><span>Resend</span><span>Email Routing Worker</span></div><p>Stripe is called with plain <code>fetch</code>, with no SDK.</p></div>
+    <div class="stack-group"><h3>Imports</h3><div class="chips"><span>SmugMug API v2</span><span>OAuth 1.0a</span><span>sharp</span></div><p>The original SmugMug sync, now switched off. It's kept as a future import path.</p></div>
+  </div>
+</div></section>
+
+<!-- 04 ARCHITECTURE -->
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Architecture</h2><span class="section-line"></span></div>
+  <div class="flow" role="img" aria-label="Architecture: photos exported from Lightroom are dragged onto the admin page, resized in the browser and stored in R2 with their records in D1. Visitors get static pages that the edge fills from D1, unlock galleries with a signed cookie, and load images from R2. Purchases go through Stripe Checkout, and a webhook records the order and sends emails.">
+    <div class="lane"><div class="lane-label">Upload</div><div class="lane-steps">
+      <div class="node ext"><b>Lightroom export</b><small>a folder of JPEGs</small></div><span class="arrow"></span>
+      <div class="node"><b>Admin dashboard</b><small>in the browser: reads EXIF, checks for duplicates, makes 1024 + 2048 px copies</small></div><span class="arrow"></span>
+      <div class="node"><b>Pages Functions</b><small>authenticated upload API</small></div><span class="arrow"></span>
+      <div class="node"><b>R2 + D1</b><small>web copies, private originals, photo records</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">View</div><div class="lane-steps">
+      <div class="node ext"><b>Visitor</b><small>usually a parent on a phone</small></div><span class="arrow"></span>
+      <div class="node"><b>Static page</b><small>edge streams live portfolio tiles in from D1</small></div><span class="arrow"></span>
+      <div class="node"><b>Gallery unlock</b><small>password &rarr; signed cookie</small></div><span class="arrow"></span>
+      <div class="node"><b>Images from R2</b><small>immutable, cached for a year</small></div>
+    </div></div>
+    <div class="lane"><div class="lane-label">Buy</div><div class="lane-steps">
+      <div class="node ext"><b>Cart</b><small>on a sale gallery</small></div><span class="arrow"></span>
+      <div class="node"><b>Stripe Checkout</b><small>hosted payment page</small></div><span class="arrow"></span>
+      <div class="node"><b>Webhook</b><small>verified, idempotent; order marked paid in D1</small></div><span class="arrow"></span>
+      <div class="node"><b>Emails</b><small>notice to me, receipt + download link to buyer</small></div>
+    </div></div>
+  </div>
+  <p class="flow-note">The site builds as static HTML, so it's fast and cheap to serve. The parts that change, like portfolio picks, galleries and orders, live in D1 and are filled in at the edge on each request, so I never wait for a rebuild after an upload.</p>
+</div></section>
+
+<!-- 05 FEATURES -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Key features</h2><span class="section-line"></span></div>
+  <div class="feature-grid">
+    <figure>
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>goarphotography.com/galleries</span></div><img src="/assets/work/goar-photography/galleries.webp" width="1440" height="900" alt="Galleries index with category filters and cover photos for an event gallery and a baseball gallery" loading="lazy" /></div>
+      <figcaption>Gallery index with filters and search. A band competition shows as one event; searching a band's name goes straight to that band.</figcaption>
+    </figure>
+    <figure>
+      <div class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>goarphotography.com/book</span></div><img src="/assets/work/goar-photography/book.webp" width="1440" height="900" alt="Book a shoot form with name, email, type of shoot, date and details" loading="lazy" /></div>
+      <figcaption>Booking requests go to my inbox through a Cloudflare Email Worker, with Resend as a fallback.</figcaption>
+    </figure>
+  </div>
+  <ul class="feature-list">
+    <li><b>Event sorter</b><span>Upload a whole competition once, and it's split into per-band galleries by capture time and the pasted performance schedule.</span></li>
+    <li><b>Private galleries and events</b><span>Password-protected, no accounts. One event password opens all of its band galleries, and there's a "Find your band" box.</span></li>
+    <li><b>Lightbox</b><span>Keyboard, swipe and pinch-zoom up to 4&times; (which loads the 2048 px copy), with deep links to any photo via <code>?photo=</code>.</span></li>
+    <li><b>Photo sales</b><span>Cart, Stripe Checkout, watermarking on sale galleries, a purchase page, refunds from the admin, and Stripe keys set up from Settings.</span></li>
+    <li><b>Save to Photos on phones</b><span>"Save all" uses the share sheet in groups of 10, preparing the next group in the background so each tap works.</span></li>
+    <li><b>Portfolio arranger</b><span>Drag-and-drop ordering that previews the real layout at desktop and phone widths before publishing.</span></li>
+    <li><b>Duplicate and re-edit detection</b><span>Exact duplicates are skipped. A re-exported edit updates the photo in place, keeping its spot, cover status and sales. Matching uses capture time from a dependency-free EXIF parser.</span></li>
+    <li><b>QR cards and short links</b><span>A built-in QR encoder makes printable cards. <code>goar.photo</code> short links resolve to the right gallery or photo.</span></li>
+    <li><b>Admin dashboard</b><span>A "needs you" list, galleries, orders, activity charts and settings, usable from a phone at the venue.</span></li>
+  </ul>
+</div></section>
+
+<!-- 06 HARD PROBLEMS -->
+<section><div class="cs-section">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Hard problems</h2><span class="section-line"></span></div>
+  <div class="problems">
+    <div class="card">
+      <div>
+        <h3>One shoot, one gallery per band</h3>
+        <p>At a competition, bands perform back to back and I'm shooting the whole time. Sorting hundreds of photos by hand afterwards is the job nobody wants.</p>
+        <p>The sorter starts a new group at a break in capture time (4 minutes by default), wherever the pasted schedule moves to the next performer, or where I click. It estimates the camera clock's offset from the bursts across the whole shoot, and names each group after the band whose slot holds most of its photos. The schedule parser copes with a PDF table that pastes as one flattened line of text; a real competition's schedule parsed all 20 rows.</p>
+      </div>
+      <div><span class="pre-label">src/lib/sorter.ts</span><pre><code>dated.forEach((p, i) =&gt; {
+  const s = slotOf(p.ms);
+  let split = i === 0;
+  if (i &gt; 0 &amp;&amp; !o.joins?.has(p.id)) {
+    const prev = dated[i - 1];
+    split = o.splits?.has(p.id)
+      || (p.ms - prev.ms) / 60000 &gt;= o.gap
+      || (sl !== null &amp;&amp; s !== slotOf(prev.ms));
+  }
+  ...</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>An image pipeline with no image service</h3>
+        <p>Paying for an image CDN would undo the point of leaving SmugMug. So the browser does the resizing: the admin dashboard makes 1024 px and 2048 px copies on a canvas before upload, halving the size in steps so the result stays sharp. Uploads retry and give up cleanly if they stall.</p>
+        <p>Galleries with downloads turned off only ever send the 1024 px copy. Originals come out of private storage only through the download endpoint, after the gallery is unlocked.</p>
+      </div>
+      <div><span class="pre-label">Admin dashboard, upload step</span><pre><code><span class="c">// step down by halves for a sharper result</span>
+while (w / 2 &gt; tw) {
+  const c = document.createElement(<span class="s">'canvas'</span>);
+  c.width = Math.round(w / 2);
+  c.height = Math.round(h / 2);
+  const cx = c.getContext(<span class="s">'2d'</span>)!;
+  cx.imageSmoothingQuality = <span class="s">'high'</span>;
+  cx.drawImage(src, 0, 0, c.width, c.height);
+  src = c; w = c.width; h = c.height;
+}</code></pre></div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>Live content on a static site</h3>
+        <p>I wanted static HTML for speed, and I also wanted portfolio changes to show up the moment I make them. The home page is built once, and a Pages Function uses Cloudflare's streaming <code>HTMLRewriter</code> to insert the current tiles from D1 into the grid on each request. If the database is unavailable, visitors still get the built page.</p>
+      </div>
+      <div><span class="pre-label">functions/index.ts</span><pre><code>const out = new HTMLRewriter()
+  .on(<span class="s">'#portfolio-grid'</span>, {
+    element(el) {
+      if (!tiles.count &amp;&amp; showSmugmug) return;
+      if (showSmugmug) el.prepend(tiles.html, { html: true });
+      else el.setInnerContent(tiles.html, { html: true });
+    },
+  })
+  .transform(page);</code></pre></div>
+    </div>
+    <div class="card text-only">
+      <div>
+        <h3>Private galleries without accounts, payments without an SDK</h3>
+        <p>Parents shouldn't need to create an account to see their kid's photos. A correct password sets a signed, HTTP-only cookie that's tied to the gallery's current password, so changing the password locks out old links, and wrong guesses are rate-limited.</p>
+        <p>Payments use Stripe Checkout, called with plain <code>fetch</code>. The webhook signature is checked in constant time against a short time window, and fulfilment is idempotent because the webhook and the buyer's success page race each other. The original SmugMug integration needed OAuth 1.0a request signing, written from the RFC and tested against a published reference vector.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 07 RESULTS -->
+<section class="cs-band"><div class="cs-section">
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Results</h2><span class="section-line"></span></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">2 days</div><div class="stat-label">From first commit to live on goarphotography.com</div></div>
+    <div class="stat"><div class="stat-num">64</div><div class="stat-label">Commits in 9 days: galleries, events, sales, refunds, security</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Runtime dependencies</div></div>
+    <div class="stat"><div class="stat-num">~$282</div><div class="stat-label">A year in SmugMug fees it was built to replace</div></div>
+  </div>
+  <div class="prose">
+    <p>The site went live on October 22, 2026. Client galleries, multi-band events and photo sales followed within days, and a security pass on October 26 added a content security policy, HSTS and password-guessing limits. Clients now get a gallery on my domain, with my branding, that works the way parents actually use it: on a phone, looking for one band or one player.</p>
+    <!-- TODO(jeff): add real numbers if you have them: galleries/events published, photos hosted, orders and revenue since Oct 23, booking requests via /book, current monthly cost (R2/D1/Stripe fees) vs SmugMug, and how the first band-competition sort went (time saved, accuracy). Also: a client quote you have permission to use. -->
+  </div>
+</div></section>
+
+<section class="cs-cta">
+  <h2>Paying for software that doesn't fit how you work?</h2>
+  <p>I build focused tools that replace the subscription and fit the workflow you already have.</p>
+  <a href="/#contact" class="btn btn-primary">Let's talk &rarr;</a><a href="https://goarphotography.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit the site &nearr;</a>
+</section>
+
+<div class="cs-next">
+  <a href="/work/bsbl-io.html"><small>&larr; Previous case study</small><b>bsbl.io</b></a>
+  <a href="/work/east-lake-classic.html" style="text-align:right;"><small>Next case study &rarr;</small><b>East Lake Classic</b></a>
+</div>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <a href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo-white.svg" alt="Goar Labs" width="158" height="32"></a>
+  <div class="footer-cols">
+    <div><b>Goar Labs</b><a href="/studio/">Studio</a><a href="/#work">Work</a><a href="/#writing">Writing</a><a href="/about.html">About</a></div>
+    <div><b>Products</b><a href="https://bsbl.io" target="_blank" rel="noopener">bsbl.io</a><span>Sandlot Culture</span></div>
+    <div><b>Elsewhere</b><a href="mailto:jeff@goarlabs.com">jeff@goarlabs.com</a><a href="https://www.linkedin.com/in/jeffgoar/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/JeffGoar" target="_blank" rel="noopener">GitHub</a><a href="https://goarphotography.com" target="_blank" rel="noopener">GOAR Photography</a></div>
+  </div>
+  <p class="footer-base">© 2026 Goar Labs · Palm Harbor, Florida</p>
+</div></footer>
+</body>
+</html>
