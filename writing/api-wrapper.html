@@ -25,12 +25,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="/" aria-label="Goar Labs home"><img src="/assets/brand/goar-labs-logo.svg" alt="Goar Labs" width="148" height="30"></a>
-  <nav class="site-nav" aria-label="Main"><a href="/studio/">Studio</a><a href="/#work">Work</a><a href="/#products">Products</a><a href="/#writing" aria-current="page">Writing</a><a href="/about">About</a><a class="nav-cta" href="/#contact">Start a project</a></nav>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span class="nav-toggle-label">Menu</span><span class="nav-toggle-icon" aria-hidden="true"></span></button>
+  <nav class="site-nav" id="site-nav" aria-label="Main"><a href="/studio/">Studio</a><a href="/#work">Work</a><a href="/#products">Products</a><a href="/#writing" aria-current="page">Writing</a><a href="/about">About</a><a class="nav-cta" href="/#contact">Start a project</a></nav>
 </div></header>
 <main id="main">
 <article class="article">
