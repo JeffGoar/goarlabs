@@ -8,7 +8,7 @@ Live at **[goarlabs.com](https://goarlabs.com)**. The old domain, goar.dev, redi
 ## Structure
 
 ```
-├── index.html                  # Homepage: Studio, products, work, writing, contact
+├── index.html                  # Homepage: Studio, products, work, contact
 ├── studio/index.html           # The Studio: client services, work, contact (goar.dev lands here)
 ├── about.html                  # Jeff: background, expertise, career timeline
 ├── 404.html                    # Not-found page
@@ -22,13 +22,19 @@ Live at **[goarlabs.com](https://goarlabs.com)**. The old domain, goar.dev, redi
 │   ├── bsbl-io.html
 │   ├── goar-photography.html
 │   ├── east-lake-classic.html
-│   ├── life-event-tool.html
 │   └── bandogram.html
-├── writing/                    # Articles
+├── _redirects                  # Cloudflare Pages redirects (essays and the Life Event Tool moved to jeffgoar.com)
 ├── og-image.png                # Social preview image (1200×630)
 ├── robots.txt
 └── sitemap.xml
 ```
+
+## What goes where
+
+goarlabs.com is the business: client work (the Studio), products and project enquiries. jeffgoar.com is
+Jeff: career history, essays and web toys. The test: would it stay with Goar Labs if the company were sold,
+or follow Jeff to a new job? The essays and the Life Event Tool case study moved to jeffgoar.com in
+November 2026; `_redirects` sends their old addresses there.
 
 ## Brand
 
@@ -69,7 +75,8 @@ Add the page to `sitemap.xml` and a card to the Work section of `index.html`.
 - DNS and email are on Cloudflare:
   - goarlabs.com and www are proxied CNAMEs to `goarlabs.pages.dev`; a redirect rule sends www to the bare domain (301).
   - goar.dev and www.goar.dev redirect (301) to the Studio page, goarlabs.com/studio/. Pages that existed on
-    goar.dev (about, work/*, writing/*) redirect to the same path on goarlabs.com so old links keep working.
+    goar.dev (about and the case studies) redirect to the same page on goarlabs.com, and its essays go straight
+    to jeffgoar.com/writing/, so old links keep working.
   - Email Routing forwards jeff@goarlabs.com and jeff@goar.dev to Jeff's inbox.
 
 ## TODO
